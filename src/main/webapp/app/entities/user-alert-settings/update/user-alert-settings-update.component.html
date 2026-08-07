@@ -1,0 +1,140 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-user-alert-settings-heading" data-cy="UserAlertSettingsCreateUpdateHeading">Create or edit a User Alert Setting</h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-4 form-check form-switch mt-3">
+          <input class="form-check-input fs-4" type="checkbox" role="switch" id="field_isActive" formControlName="isActive" checked />
+          <label class="form-check-label fw-bold mt-1 ms-2" for="field_isActive">Rule is Active</label>
+        </div>
+
+        @let symbolRef = editForm.get('symbol')!;
+        <div class="mb-3">
+          <label class="form-label fw-bold" for="field_symbol">Symbol</label>
+          <input type="text" class="form-control" name="symbol" id="field_symbol" data-cy="symbol" formControlName="symbol" />
+          @if (symbolRef.invalid && (symbolRef.dirty || symbolRef.touched)) {
+            <div>
+              @if (editForm.get('symbol')?.errors?.required) {
+                <small class="form-text text-danger">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let actionRef = editForm.get('action')!;
+        <div class="mb-3">
+          <label class="form-label fw-bold" for="field_action">Action</label>
+          <select class="form-control" name="action" formControlName="action" id="field_action" data-cy="action">
+            <option [ngValue]="null">Select an action...</option>
+            <option value="BUY">BUY (Consume Power)</option>
+            <option value="SELL">SELL (Export Power)</option>
+            <option value="CONSUME">CONSUME (Run Appliances)</option>
+            <option value="INFO">INFO (Notify Only)</option>
+          </select>
+          @if (actionRef.invalid && (actionRef.dirty || actionRef.touched)) {
+            <div>
+              @if (editForm.get('action')?.errors?.required) {
+                <small class="form-text text-danger">An action is required to save this rule.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let thresholdRef = editForm.get('threshold')!;
+        <div class="mb-3">
+          <label class="form-label fw-bold" for="field_threshold">Threshold (EUR)</label>
+          <input type="number" class="form-control" name="threshold" id="field_threshold" data-cy="threshold" formControlName="threshold" />
+          @if (thresholdRef.invalid && (thresholdRef.dirty || thresholdRef.touched)) {
+            <div>
+              @if (editForm.get('threshold')?.errors?.required) {
+                <small class="form-text text-danger">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let triggerIfGreaterRef = editForm.get('triggerIfGreater')!;
+        <div class="mb-4">
+          <div class="form-check mt-2">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              name="triggerIfGreater"
+              id="field_triggerIfGreater"
+              data-cy="triggerIfGreater"
+              formControlName="triggerIfGreater"
+            />
+            <label class="form-check-label ms-2 fw-bold" for="field_triggerIfGreater">
+              Trigger If Greater
+              <span class="text-muted fw-normal ms-1">(Default is lower or equal to)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-bold" for="field_startTime">Active Time Window</label>
+          <div class="d-flex align-items-center">
+            <input type="time" class="form-control" name="startTime" id="field_startTime" formControlName="startTime" />
+            <span class="mx-3 fw-bold text-muted">-</span>
+            <input type="time" class="form-control" name="endTime" id="field_endTime" formControlName="endTime" />
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-bold" for="field_minDurationMinutes">Minimum Duration (Minutes)</label>
+          <div class="input-group">
+            <div class="input-group-text">
+              <input type="checkbox" class="form-check-input mt-0" #durationToggle (change)="(0)" />
+              <span class="ms-2">Enable</span>
+            </div>
+            <input
+              type="number"
+              class="form-control"
+              name="minDurationMinutes"
+              id="field_minDurationMinutes"
+              formControlName="minDurationMinutes"
+              [readOnly]="!durationToggle.checked"
+              placeholder="e.g., 60"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3" *jhiHasAnyAuthority="['ROLE_ADMIN']">
+          <label class="form-label fw-bold" for="field_user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
+            <option [ngValue]="null"></option>
+            @for (userOption of usersSharedCollection; track $index) {
+              <option [ngValue]="userOption">{{ userOption.login }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-4 border-top pt-3">
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary me-2" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save Settings</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+id;symbol;threshold;trigger_if_greater;action;start_time;end_time;min_duration_minutes;is_active
+1;tender given;4736.61;true;BUY;formamide aha before;know unabashedly;19844;false
+2;tune-up offensively;10129.05;true;BUY;eek sun vastly;lay;23400;true
+3;cosset who;23476.6;false;INFO;disconnection;mould;3037;false
+4;furthermore sympathetically toothbrush;1933.35;true;CONSUME;except;lox incidentally honorable;19386;false
+5;quaintly by;19826.18;true;INFO;uh-huh yippee before;manner after guide;30576;false
+6;inside;269.42;true;SELL;inject restfully critical;inquisitively;46;false
+7;only;1246.91;true;INFO;pitiful junior aboard;tremendously ick;28852;true
+8;whether kindly gladly;27172.4;true;BUY;once sharply monstrous;louse gosh;8562;false
+9;premise;12340.93;true;CONSUME;menacing;pro pendant cinder;4325;false
+10;thyme;23773.16;false;BUY;up gratefully when;provided eek;11078;true

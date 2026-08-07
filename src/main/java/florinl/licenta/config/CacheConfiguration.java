@@ -50,6 +50,9 @@ public class CacheConfiguration {
             createCache(cm, florinl.licenta.domain.User.class.getName());
             createCache(cm, florinl.licenta.domain.Authority.class.getName());
             createCache(cm, florinl.licenta.domain.User.class.getName() + ".authorities");
+            createCache(cm, florinl.licenta.domain.DailyMarketData.class.getName());
+            createCache(cm, florinl.licenta.domain.UserAlertSettings.class.getName());
+            createCache(cm, florinl.licenta.domain.UserSignal.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

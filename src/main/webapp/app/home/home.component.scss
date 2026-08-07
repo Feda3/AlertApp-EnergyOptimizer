@@ -1,23 +1,32 @@
-/* ==========================================================================
-Main page styles
-========================================================================== */
+.home-page-container {
+  /* Fulgerul va avea un efect de strălucire pe fundal închis */
+  .main-icon {
+    font-size: 4.5rem;
+    filter: drop-shadow(0 0 15px rgba(13, 110, 253, 0.4));
+  }
 
-.hipster {
-  display: inline-block;
-  width: 347px;
-  height: 497px;
-  background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
-  background-size: contain;
-}
+  /* Stilurile pentru cardurile cu funcționalități pe temă dark */
+  .feature-card {
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.03); /* Foarte ușor transparent */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Margine subtilă */
+    backdrop-filter: blur(10px); /* Efect de sticlă mată */
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
 
-/* wait autoprefixer update to allow simple generation of high pixel density media query */
-@media only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (-moz-min-device-pixel-ratio: 2),
-  only screen and (-o-min-device-pixel-ratio: 2/1),
-  only screen and (min-resolution: 192dpi),
-  only screen and (min-resolution: 2dppx) {
-  .hipster {
-    background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
-    background-size: contain;
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      font-size: 2rem;
+    }
+
+    /* La hover, cardul se luminează puțin și se ridică */
+    &:hover {
+      transform: translateY(-8px);
+      background-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5);
+    }
   }
 }

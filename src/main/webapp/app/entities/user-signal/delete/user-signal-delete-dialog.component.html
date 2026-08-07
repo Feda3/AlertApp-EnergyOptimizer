@@ -1,0 +1,24 @@
+@if (userSignal) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(userSignal.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="userSignalDeleteDialogHeading" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error />
+      <p id="jhi-delete-userSignal-heading" jhiTranslate="alertApp.userSignal.delete.question" [translateValues]="{ id: userSignal.id }">
+        Are you sure you want to delete User Signal {{ userSignal.id }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+      </button>
+
+      <button id="jhi-confirm-delete-userSignal" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
+      </button>
+    </div>
+  </form>
+}

@@ -38,8 +38,8 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:h2:file:./target/h2db/db/alertApp;DB_CLOSE_DELAY=-1;MODE=MYSQL
-    username: alertApp
-    password:
+    username: root
+    password: proot
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -49,12 +49,21 @@ spring:
       enabled: true
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: dev, faker
+    contexts: dev
   mail:
-    host: localhost
-    port: 25
-    username:
-    password:
+    host: smtp.gmail.com
+    port: 587
+    username: florin.lupascu.email@gmail.com
+    password: daxp dgpg kyyq vkdl
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   thymeleaf:

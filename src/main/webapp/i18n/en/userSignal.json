@@ -1,0 +1,28 @@
+{
+  "alertApp": {
+    "userSignal": {
+      "home": {
+        "title": "User Signals",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new User Signal",
+        "createOrEditLabel": "Create or edit a User Signal",
+        "notFound": "No User Signals found"
+      },
+      "created": "A new User Signal is created with identifier {{ param }}",
+      "updated": "A User Signal is updated with identifier {{ param }}",
+      "deleted": "A User Signal is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Signal {{ id }}?"
+      },
+      "detail": {
+        "title": "User Signal"
+      },
+      "id": "ID",
+      "signalDate": "Signal Date",
+      "action": "Action",
+      "summaryMessage": "Summary Message",
+      "user": "User",
+      "setting": "Setting"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "annotations": {
+    "changelogDate": "20260329000555"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "fetchDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "symbol",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "metricValue",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "DailyMarketData",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

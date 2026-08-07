@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (userSignal(); as userSignalRef) {
+      <div>
+        <h2 data-cy="userSignalDetailsHeading"><span jhiTranslate="alertApp.userSignal.detail.title">User Signal</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ userSignalRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userSignal.signalDate">Signal Date</span></dt>
+          <dd>
+            <span>{{ userSignalRef.signalDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userSignal.action">Action</span></dt>
+          <dd>
+            <span [jhiTranslate]="'alertApp.AlertAction.' + (userSignalRef.action ?? 'null')">{{
+              { null: '', BUY: 'BUY', SELL: 'SELL', CONSUME: 'CONSUME', INFO: 'INFO' }[userSignalRef.action ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userSignal.summaryMessage">Summary Message</span></dt>
+          <dd>
+            <span>{{ userSignalRef.summaryMessage }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userSignal.user">User</span></dt>
+          <dd>
+            <span>{{ userSignalRef.user?.login }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userSignal.setting">Setting</span></dt>
+          <dd>
+            @if (userSignal()!.setting) {
+              <div>
+                <a [routerLink]="['/user-alert-settings', userSignal()!.setting?.id, 'view']">{{ userSignalRef.setting?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/user-signal', userSignalRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

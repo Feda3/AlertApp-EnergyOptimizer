@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (userAlertSettings(); as userAlertSettingsRef) {
+      <div>
+        <h2 data-cy="userAlertSettingsDetailsHeading">
+          <span jhiTranslate="alertApp.userAlertSettings.detail.title">User Alert Settings</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ userAlertSettingsRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userAlertSettings.symbol">Symbol</span></dt>
+          <dd>
+            <span>{{ userAlertSettingsRef.symbol }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userAlertSettings.threshold">Threshold</span></dt>
+          <dd>
+            <span>{{ userAlertSettingsRef.threshold }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userAlertSettings.triggerIfGreater">Trigger If Greater</span></dt>
+          <dd>
+            <span>{{ userAlertSettingsRef.triggerIfGreater }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userAlertSettings.action">Action</span></dt>
+          <dd>
+            <span [jhiTranslate]="'alertApp.AlertAction.' + (userAlertSettingsRef.action ?? 'null')">{{
+              { null: '', BUY: 'BUY', SELL: 'SELL', CONSUME: 'CONSUME', INFO: 'INFO' }[userAlertSettingsRef.action ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userAlertSettings.startTime">Start Time</span></dt>
+          <dd>
+            <span>{{ userAlertSettingsRef.startTime }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userAlertSettings.endTime">End Time</span></dt>
+          <dd>
+            <span>{{ userAlertSettingsRef.endTime }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userAlertSettings.minDurationMinutes">Min Duration Minutes</span></dt>
+          <dd>
+            <span>{{ userAlertSettingsRef.minDurationMinutes }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userAlertSettings.isActive">Is Active</span></dt>
+          <dd>
+            <span>{{ userAlertSettingsRef.isActive }}</span>
+          </dd>
+          <dt><span jhiTranslate="alertApp.userAlertSettings.user">User</span></dt>
+          <dd>
+            <span>{{ userAlertSettingsRef.user?.login }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/user-alert-settings', userAlertSettingsRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

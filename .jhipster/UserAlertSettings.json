@@ -1,0 +1,59 @@
+{
+  "annotations": {
+    "changelogDate": "20260329000556"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "symbol",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "threshold",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "triggerIfGreater",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "action",
+      "fieldType": "AlertAction",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "BUY,SELL,CONSUME,INFO"
+    },
+    {
+      "fieldName": "startTime",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "endTime",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "minDurationMinutes",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "UserAlertSettings",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

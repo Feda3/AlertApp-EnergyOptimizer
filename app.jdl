@@ -1,0 +1,52 @@
+// 1. The daily data you fetch
+entity DailyMarketData {
+    fetchDate LocalDate required
+    symbol String required 
+    metricValue Double required
+}
+
+
+// Define the specific flags a user can choose from (drop down)
+enum AlertAction {
+    BUY, 
+    SELL, 
+    CONSUME,
+    INFO
+}
+
+// 2. The individual user settings
+entity UserAlertSettings {
+    symbol String required
+    threshold Double required
+    triggerIfGreater Boolean required
+    
+    // The New Settings:
+    action AlertAction required       // Drops down: BUY, SELL, CONSUME
+    startTime String                  // e.g., "07:00"
+    endTime String                    // e.g., "23:00"
+    minDurationMinutes Integer        // e.g., 60 (for a 1 hour minimum)
+    isActive Boolean                  // True by default, uncheck to pause
+}
+
+// 3. user experience data base
+entity UserSignal {
+    signalDate LocalDate required
+    action AlertAction required       
+    summaryMessage String
+}
+
+// 4. Relationships to the built-in JHipster User
+relationship ManyToOne {
+    // A user can have multiple alert settings
+    UserAlertSettings{user(login)} to User with builtInEntity,
+    
+    // A user will have multiple historical signals over time
+    UserSignal{user(login)} to User with builtInEntity,
+    
+    // Link the signal back to the specific setting that triggered it
+    UserSignal{setting} to UserAlertSettings
+}
+
+// Set pagination and create service layers where we will write our custom logic
+paginate all with pagination
+service all with serviceClass

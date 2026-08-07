@@ -1,0 +1,43 @@
+{
+  "annotations": {
+    "changelogDate": "20260329000557"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "signalDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "action",
+      "fieldType": "AlertAction",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "BUY,SELL,CONSUME,INFO"
+    },
+    {
+      "fieldName": "summaryMessage",
+      "fieldType": "String"
+    }
+  ],
+  "name": "UserSignal",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipWithBuiltInEntity": true
+    },
+    {
+      "otherEntityName": "userAlertSettings",
+      "relationshipName": "setting",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

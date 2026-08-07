@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-daily-market-data-heading"
+        data-cy="DailyMarketDataCreateUpdateHeading"
+        jhiTranslate="alertApp.dailyMarketData.home.createOrEditLabel"
+      >
+        Create or edit a Daily Market Data
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="alertApp.dailyMarketData.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let fetchDateRef = editForm.get('fetchDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_fetchDate" jhiTranslate="alertApp.dailyMarketData.fetchDate">Fetch Date</label>
+          <div class="input-group">
+            <input
+              id="field_fetchDate"
+              data-cy="fetchDate"
+              type="text"
+              class="form-control"
+              name="fetchDate"
+              ngbDatepicker
+              #fetchDateDp="ngbDatepicker"
+              formControlName="fetchDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fetchDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          @if (fetchDateRef.invalid && (fetchDateRef.dirty || fetchDateRef.touched)) {
+            <div>
+              @if (editForm.get('fetchDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let symbolRef = editForm.get('symbol')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_symbol" jhiTranslate="alertApp.dailyMarketData.symbol">Symbol</label>
+          <input type="text" class="form-control" name="symbol" id="field_symbol" data-cy="symbol" formControlName="symbol" />
+          @if (symbolRef.invalid && (symbolRef.dirty || symbolRef.touched)) {
+            <div>
+              @if (editForm.get('symbol')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let metricValueRef = editForm.get('metricValue')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_metricValue" jhiTranslate="alertApp.dailyMarketData.metricValue">Metric Value</label>
+          <input
+            type="number"
+            class="form-control"
+            name="metricValue"
+            id="field_metricValue"
+            data-cy="metricValue"
+            formControlName="metricValue"
+          />
+          @if (metricValueRef.invalid && (metricValueRef.dirty || metricValueRef.touched)) {
+            <div>
+              @if (editForm.get('metricValue')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('metricValue')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{
+  "alertApp": {
+    "userAlertSettings": {
+      "home": {
+        "title": "User Alert Settings",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new User Alert Settings",
+        "createOrEditLabel": "Create or edit a User Alert Settings",
+        "notFound": "No User Alert Settings found"
+      },
+      "created": "A new User Alert Settings is created with identifier {{ param }}",
+      "updated": "A User Alert Settings is updated with identifier {{ param }}",
+      "deleted": "A User Alert Settings is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Alert Settings {{ id }}?"
+      },
+      "detail": {
+        "title": "User Alert Settings"
+      },
+      "id": "ID",
+      "symbol": "Symbol",
+      "threshold": "Threshold",
+      "triggerIfGreater": "Trigger If Greater",
+      "action": "Action",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "minDurationMinutes": "Min Duration Minutes",
+      "isActive": "Is Active",
+      "user": "User"
+    }
+  }
+}

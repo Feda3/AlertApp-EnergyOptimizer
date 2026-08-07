@@ -1,0 +1,118 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-user-signal-heading" data-cy="UserSignalCreateUpdateHeading" jhiTranslate="alertApp.userSignal.home.createOrEditLabel">
+        Create or edit a User Signal
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="alertApp.userSignal.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let signalDateRef = editForm.get('signalDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_signalDate" jhiTranslate="alertApp.userSignal.signalDate">Signal Date</label>
+          <div class="input-group">
+            <input
+              id="field_signalDate"
+              data-cy="signalDate"
+              type="text"
+              class="form-control"
+              name="signalDate"
+              ngbDatepicker
+              #signalDateDp="ngbDatepicker"
+              formControlName="signalDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="signalDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          @if (signalDateRef.invalid && (signalDateRef.dirty || signalDateRef.touched)) {
+            <div>
+              @if (editForm.get('signalDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let actionRef = editForm.get('action')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_action" jhiTranslate="alertApp.userSignal.action">Action</label>
+          <select class="form-control" name="action" formControlName="action" id="field_action" data-cy="action">
+            <option [ngValue]="null">{{ 'alertApp.AlertAction.null' | translate }}</option>
+            @for (alertAction of alertActionValues; track $index) {
+              <option [value]="alertAction">{{ 'alertApp.AlertAction.' + alertAction | translate }}</option>
+            }
+          </select>
+          @if (actionRef.invalid && (actionRef.dirty || actionRef.touched)) {
+            <div>
+              @if (editForm.get('action')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_summaryMessage" jhiTranslate="alertApp.userSignal.summaryMessage">Summary Message</label>
+          <input
+            type="text"
+            class="form-control"
+            name="summaryMessage"
+            id="field_summaryMessage"
+            data-cy="summaryMessage"
+            formControlName="summaryMessage"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_user" jhiTranslate="alertApp.userSignal.user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
+            <option [ngValue]="null"></option>
+            @for (userOption of usersSharedCollection; track $index) {
+              <option [ngValue]="userOption">{{ userOption.login }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_setting" jhiTranslate="alertApp.userSignal.setting">Setting</label>
+          <select
+            class="form-control"
+            id="field_setting"
+            data-cy="setting"
+            name="setting"
+            formControlName="setting"
+            [compareWith]="compareUserAlertSettings"
+          >
+            <option [ngValue]="null"></option>
+            @for (userAlertSettingsOption of userAlertSettingsSharedCollection; track $index) {
+              <option [ngValue]="userAlertSettingsOption">{{ userAlertSettingsOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

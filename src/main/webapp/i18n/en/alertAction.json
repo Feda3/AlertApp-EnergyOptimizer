@@ -1,0 +1,11 @@
+{
+  "alertApp": {
+    "AlertAction": {
+      "null": "",
+      "BUY": "BUY",
+      "SELL": "SELL",
+      "CONSUME": "CONSUME",
+      "INFO": "INFO"
+    }
+  }
+}

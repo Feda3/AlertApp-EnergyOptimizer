@@ -1,0 +1,26 @@
+{
+  "alertApp": {
+    "dailyMarketData": {
+      "home": {
+        "title": "Daily Market Data",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Daily Market Data",
+        "createOrEditLabel": "Create or edit a Daily Market Data",
+        "notFound": "No Daily Market Data found"
+      },
+      "created": "A new Daily Market Data is created with identifier {{ param }}",
+      "updated": "A Daily Market Data is updated with identifier {{ param }}",
+      "deleted": "A Daily Market Data is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Daily Market Data {{ id }}?"
+      },
+      "detail": {
+        "title": "Daily Market Data"
+      },
+      "id": "ID",
+      "fetchDate": "Fetch Date",
+      "symbol": "Symbol",
+      "metricValue": "Metric Value"
+    }
+  }
+}
