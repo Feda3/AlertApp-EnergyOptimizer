@@ -15,7 +15,7 @@ This project was built utilizing a robust Client-Server architecture, bootstrapp
 *   **Database:** MySQL (Production) / H2 (Development) managed via Liquibase.
 *   **Security:** JSON Web Tokens (JWT) authentication, Role-Based Access Control (RBAC), and strict row-level multi-tenancy.
 
-## ⚙️ Key Features
+## Key Features
 *   **Automated Data Ingestion:** Scheduled JVM Cron Jobs fetch Day-Ahead Market prices via the ENTSO-E API.
 *   **XML Sanitization & Parsing:** Extracts relevant price/time nodes and persists them to the local database to reduce redundant network calls.
 *   **Algorithmic Processing Engine:** Evaluates daily market data against specific user settings (Price thresholds, Temporal filters, Consecutive block validation).
