@@ -39,7 +39,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:h2:file:./target/h2db/db/alertApp;DB_CLOSE_DELAY=-1;MODE=MYSQL
     username: root
-    password: proot
+    password: your_password_here
     hikari:
       poolName: Hikari
       auto-commit: false

@@ -1,3 +1,5 @@
+Disclaimer regarding commit history: This repository was initialized and the codebase was uploaded as a single consolidated commit. However, this software is the result of my Bachelor's thesis project, which was actively researched, designed, and developed over a span of several months and finalized earlier this year. It is published here to serve as a portfolio piece for software engineering roles.
+
 # alertApp
 
 This application was generated using JHipster 8.11.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v8.11.0](https://www.jhipster.tech/documentation-archive/v8.11.0).
@@ -263,3 +265,5 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [Leaflet]: https://leafletjs.com/
 [DefinitelyTyped]: https://definitelytyped.org/
 [Angular CLI]: https://angular.dev/tools/cli
+
+Financial Disclaimer: This application was developed as a Proof of Concept (PoC) for a university thesis. While the ENTSO-E data fetched is accurate, the generated signals serve an educational and orientational purpose. The platform does not constitute authorized financial advice. Real-world trading decisions or the adoption of dynamic tariff contracts carry financial risks and should be approached with a thorough understanding of energy markets.
